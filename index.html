@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05060f">
+  <meta name="description" content="一場跨越星際的互動式作品集旅程。">
+  <title>SPACE ODYSSEY — Interactive Portfolio</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/sections.css">
+  <link rel="stylesheet" href="./css/interactions.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#content-area">跳至作品資訊</a>
+  <div id="journey-height" aria-hidden="true"></div>
+  <main id="journey-stage" class="journey-stage">
+    <canvas id="space-canvas" aria-hidden="true"></canvas>
+    <div id="finale-paper" aria-hidden="true"></div>
+    <canvas id="finale-canvas" aria-label="蠟筆手繪星球，點擊星球探索聯絡資訊" role="img"></canvas>
+    <div id="sparkle-layer" aria-hidden="true"></div>
+    <div class="space-grain" aria-hidden="true"></div>
+    <div id="cinematic-vignette" aria-hidden="true"></div>
+    <div id="transition-flash" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#" id="home-button" aria-label="回到旅程起點"><span class="brand-mark">✳</span> SPACE <span class="brand-light">/ PORTFOLIO</span></a>
+      <span class="header-caption">A JOURNEY THROUGH IDEAS</span>
+      <span class="header-status"><span class="status-dot"></span> <span id="flight-status">01 / APPROACH</span></span>
+    </header>
+    <section id="content-area" class="station-content" aria-live="polite" aria-atomic="true">
+      <p class="eyebrow"><span id="station-count">01 / 07</span> <span class="eyebrow-line"></span> <span id="station-subtitle">01 / THE BEGINNING</span></p>
+      <h1 id="station-title">LIFT OFF</h1>
+      <p id="station-body" class="station-description">一段跨越星際的創作旅程。</p>
+      <div class="station-actions"><button id="details-button" type="button" class="primary-button">探索更多 <span aria-hidden="true">↗</span></button><a id="station-link" class="text-link" target="_blank" rel="noopener noreferrer" hidden></a></div><div id="explore-actions" class="explore-actions" aria-label="可探索的技能衛星"></div>
+    </section>
+    <div class="journey-side" aria-label="旅程站點導覽"><span class="side-caption">YOUR JOURNEY</span><nav id="station-navigation" aria-label="前往旅程站點"></nav><span id="progress-current" class="side-percent">0%</span></div>
+    <footer class="site-footer"><span>SCROLL TO EXPLORE <span class="scroll-indicator" aria-hidden="true">↓</span></span><span class="footer-coordinate">EARTH → BEYOND</span></footer>
+    <div id="webgl-fallback" class="webgl-fallback" hidden><p>目前無法啟動 3D 畫面，仍可透過下方清單閱讀所有作品資訊。</p><div id="fallback-content"></div></div>
+  </main>
+  <div id="detail-panel" class="detail-overlay" role="dialog" aria-modal="true" aria-labelledby="detail-title" hidden>
+    <div id="detail-backdrop" class="detail-backdrop"></div>
+    <article class="detail-card"><button id="close-details" class="close-button" type="button" aria-label="關閉詳情">×</button><p class="detail-label">FIELD NOTES / EXPLORE</p><h2 id="detail-title"></h2><p id="detail-text"></p><a id="detail-link" class="primary-button" target="_blank" rel="noopener noreferrer" hidden></a><p class="detail-hint">ESC / 點擊外側關閉</p></article>
+  </div>
+  <noscript><style>#journey-height,#journey-stage{display:none!important}#no-script-content{display:block!important}</style><section id="no-script-content" style="display:none;padding:3rem;background:#05060f;color:white"><h1>SPACE PORTFOLIO</h1><p>這個互動作品集需要 JavaScript。啟用後可以體驗 3D 太空旅程。</p></section></noscript>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

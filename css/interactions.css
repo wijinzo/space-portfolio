@@ -1,0 +1,35 @@
+.detail-overlay { position:fixed; inset:0; z-index:100; display:grid; place-items:center; padding:20px; }
+.detail-backdrop { position:absolute; inset:0; background:rgba(3,5,15,.78); backdrop-filter:blur(10px); }
+.detail-card { position:relative; z-index:1; width:min(530px,100%); max-height:min(80vh,700px); overflow-y:auto; border:1px solid rgba(230,216,211,.25); background:#121626; color:var(--star-white); padding:clamp(26px,5vw,54px); box-shadow:0 30px 100px rgba(0,0,0,.5); }
+.detail-label { color:var(--accent); font-size:10px; letter-spacing:.23em; }
+.detail-card h2 { font-size:clamp(2.3rem,5vw,4rem); letter-spacing:-.05em; line-height:1; margin:25px 0; }
+.detail-card #detail-text { color:#d0d3e2; font:400 16px/2 system-ui,'Noto Sans TC',sans-serif; white-space:pre-line; }
+.detail-hint { margin:38px 0 0; color:#828ba9; font-size:10px; letter-spacing:.13em; }
+.close-button { position:absolute; right:24px; top:19px; background:none; border:none; color:var(--star-white); font-size:34px; font-weight:300; cursor:pointer; width:44px; height:44px; }
+.webgl-fallback { position:absolute; inset:75px 12px 50px; z-index:30; background:#101323; overflow:auto; padding:20px; font:400 15px/1.8 system-ui,sans-serif; }
+.webgl-fallback article { border-bottom:1px solid #4a4f68; padding:10px 0; }
+.webgl-fallback h2 { margin:0; font-size:1.5rem; }
+.webgl-fallback button { color:#fff; background:#314368; border:0; padding:10px 15px; }
+.reduced-mode #journey-height { display:none; }
+.reduced-mode .journey-stage { position:relative; min-height:100vh; overflow:visible; }
+.reduced-mode .station-content,.reduced-mode .journey-side,.reduced-mode .site-footer,.reduced-mode #space-canvas,.reduced-mode #finale-canvas,.reduced-mode #finale-paper { display:none !important; }
+.reduced-mode .webgl-fallback { display:block !important; position:relative; inset:auto; margin:100px auto 30px; max-width:800px; }
+.reduced-mode .webgl-fallback button { display:none; }
+@media(prefers-reduced-motion:reduce) { .scroll-indicator { animation:none; } }
+
+/* hidden 必須覆蓋 detail-overlay 的 display:grid，避免透明面板擋住場景互動。 */
+.detail-overlay[hidden] { display:none !important; }
+
+/* 宇宙空白點擊：獨立圖層只顯示回饋，不攔截滑鼠或捲動。 */
+#sparkle-layer { position:absolute; inset:0; z-index:6; pointer-events:none; overflow:hidden; }
+.click-star { position:absolute; display:block; color:#c9e5ff; font-size:22px; line-height:1;
+  text-shadow:0 0 14px #a6ccff,0 0 26px #7e9ff4; opacity:0;
+  transform:translate(-50%,-50%) scale(.1);
+  animation:star-burst 900ms ease-out var(--delay,0ms) forwards; }
+@keyframes star-burst {
+  10% { opacity:1; transform:translate(-50%,-50%) scale(1.1); }
+  60% { opacity:1; }
+  100% { opacity:0; transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.25); }
+}
+#space-canvas { touch-action:pan-y; }
+@media(prefers-reduced-motion:reduce) { .click-star { display:none; } }

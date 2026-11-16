@@ -1,0 +1,78 @@
+#journey-height { height: 1100vh; pointer-events: none; }
+.journey-stage { position: fixed; inset: 0; overflow: hidden; background: var(--space-black); isolation: isolate; }
+#space-canvas,#finale-canvas,#finale-paper { position: absolute; inset: 0; width: 100%; height: 100%; }
+#space-canvas { display: block; z-index: 0; }
+#finale-paper { z-index: 1; background: var(--paper); opacity: 0; pointer-events: none; transition: none; }
+#finale-paper::after { content: ''; position:absolute; inset:0; opacity: .19; background-image: repeating-linear-gradient(33deg,transparent 0px, transparent 3px,rgba(145,104,76,.16) 4px,transparent 5px),repeating-linear-gradient(110deg,transparent 0px,transparent 11px,rgba(113,82,54,.10) 12px,transparent 13px); }
+#finale-canvas { z-index: 2; opacity: 0; pointer-events: none; }
+.finale-mode #finale-canvas { pointer-events: auto; }
+.space-grain { position:absolute; inset:0; z-index:3; pointer-events:none; background: radial-gradient(circle at 52% 43%,transparent 15%,rgba(1,1,12,.22) 93%); }
+.site-header { position:absolute; z-index:10; left:clamp(23px,5.2vw,96px); right:clamp(23px,5.2vw,96px); top:clamp(23px,4.4vh,54px); display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.brand { display:inline-flex; align-items:center; gap:8px; font-size:clamp(12px,1.2vw,16px); font-weight:900; letter-spacing:.08em; text-decoration:none; }
+.brand-mark { font-size:26px; color:var(--accent); margin-right:5px; }
+.brand-light { color:var(--muted); font-weight:500; }
+.header-caption { font-size:10px; font-weight:600; letter-spacing:.26em; color:var(--muted); }
+.header-status { color:var(--muted); font-size:10px; font-weight:700; letter-spacing:.16em; }
+.status-dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:#82c5a3; margin-right:7px; box-shadow:0 0 12px #82c5a3; }
+.station-content { position:absolute; z-index:7; top:50%; left:clamp(24px,9vw,155px); transform:translateY(-45%); max-width:min(44vw,650px); transition:color .3s; pointer-events:none; }
+.eyebrow { display:flex; gap:14px; align-items:center; color:var(--accent); font-size:11px; font-weight:700; letter-spacing:.22em; margin:0 0 28px; }
+.eyebrow-line { width:35px; height:1px; background:var(--accent); flex:none; }
+h1 { margin:0; font-size:clamp(3.7rem,8vw,9rem); line-height:.88; letter-spacing:-.072em; font-weight:950; max-width:8ch; text-wrap:balance; }
+.station-description { color:#d2d4e0; font-size:clamp(14px,1.3vw,17px); font-family:system-ui,'Noto Sans TC',sans-serif; font-weight:400; line-height:1.9; max-width:30em; margin:32px 0 32px; }
+.station-actions { display:flex; align-items:center; flex-wrap:wrap; gap:22px; pointer-events:auto; }
+.primary-button { display:inline-flex; justify-content:center; gap:24px; align-items:center; padding:16px 22px; min-height:48px; border:1px solid var(--accent); background:var(--accent); color:#170d11; border-radius:3px; font-size:13px; font-weight:850; cursor:pointer; text-decoration:none; transition:transform .2s,background .2s; }
+.primary-button:hover { transform:translateY(-3px); background:#ff916e; }
+.text-link { font-size:12px; letter-spacing:.05em; text-underline-offset:5px; }
+.journey-side { position:absolute; z-index:10; right:clamp(23px,5.2vw,96px); top:50%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; gap:24px; }
+.side-caption { writing-mode:vertical-rl; font-size:9px; letter-spacing:.25em; color:var(--muted); }
+#station-navigation { display:flex; flex-direction:column; align-items:center; gap:14px; }
+.station-dot { width:23px; height:23px; padding:0; border:0; background:none; cursor:pointer; display:grid; place-items:center; }
+.station-dot::after { content:''; width:5px; height:5px; background:#8c91a8; border-radius:50%; transition:width .2s,height .2s,background .2s; }
+.station-dot.is-active::after { width:10px; height:10px; background:var(--accent); box-shadow:0 0 14px var(--accent); }
+.side-percent { font-size:10px; letter-spacing:.1em; color:var(--muted); }
+.site-footer { position:absolute; bottom:clamp(24px,4.5vh,50px); left:clamp(23px,5.2vw,96px); right:clamp(23px,5.2vw,96px); z-index:8; display:flex; justify-content:space-between; color:#a1a7be; font-size:10px; font-weight:650; letter-spacing:.23em; }
+.scroll-indicator { display:inline-block; margin-left:12px; color:var(--accent); font-size:18px; animation:bob 2s infinite; }
+@keyframes bob { 50% { transform:translateY(7px); } }
+#progress-fill { display:none; }
+.finale-mode .station-content { color:var(--paper-ink); }
+.finale-mode .station-description,.finale-mode .brand-light,.finale-mode .header-caption,.finale-mode .header-status,.finale-mode .side-caption,.finale-mode .side-percent,.finale-mode .site-footer { color:#79675c; }
+.finale-mode .station-dot::after { background:#aa9381; }
+.finale-mode .station-dot.is-active::after { background:#ce7c62; box-shadow:none; }
+.finale-mode .space-grain { opacity:0; }
+.finale-mode .brand-mark,.finale-mode .eyebrow { color:#b76354; }
+.finale-mode .eyebrow-line { background:#b76354; }
+.finale-mode .primary-button { background:#d88969; border-color:#d88969; }
+@media(max-width:900px) {
+  .header-caption { display:none; }
+  .station-content { left:7vw; max-width:58vw; }
+  h1 { font-size:clamp(3.4rem,9vw,6rem); }
+}
+@media(max-width:650px) {
+  .site-header { top:24px; }
+  .header-status { display:none; }
+  .station-content { top:auto; bottom:13%; left:7%; right:10%; transform:none; max-width:none; }
+  h1 { font-size:clamp(3.4rem,15vw,5rem); max-width:100%; }
+  .eyebrow { font-size:9px; margin-bottom:18px; }
+  .station-description { margin:18px 0 20px; max-width:22em; font-size:14px; }
+  .journey-side { top:42%; right:13px; gap:6px; }
+  #station-navigation { gap:6px; }
+  .side-caption,.side-percent { display:none; }
+  .site-footer { font-size:9px; bottom:20px; }
+  .footer-coordinate { display:none; }
+  .space-grain { background:linear-gradient(to top,rgba(2,3,14,.6),transparent 76%); }
+  .finale-mode .space-grain { opacity:0; }
+}
+
+/* 技能衛星也提供 HTML 按鈕，支援觸控與鍵盤。 */
+.explore-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; pointer-events:auto; }
+.explore-chip { background:rgba(15,27,54,.75); border:1px solid rgba(153,192,248,.55); border-radius:100px; color:#f4f1ea; padding:10px 14px; min-height:42px; cursor:pointer; font:600 12px system-ui,sans-serif; }
+.explore-chip:hover,.explore-chip:focus-visible { background:rgba(69,111,172,.65); outline-offset:3px; }
+@media(max-width:650px) { .explore-actions { gap:6px; margin-top:12px; } .explore-chip { font-size:11px; padding:8px 10px; min-height:38px; } }
+
+/* 電影式飛行的速度暗角與過站柔光，純視覺層不攔截任何互動。 */
+#cinematic-vignette, #transition-flash { position:absolute; inset:0; pointer-events:none; }
+#cinematic-vignette { z-index:4; opacity:.24; background:radial-gradient(ellipse at 55% 49%,transparent 38%,rgba(1,2,13,.83) 100%); }
+#transition-flash { z-index:5; opacity:0; background:radial-gradient(ellipse at 63% 45%,rgba(150,207,255,.58),transparent 65%); mix-blend-mode:screen; }
+.station-content { margin-top:var(--cinematic-shift,0px); will-change:opacity; }
+.finale-mode #cinematic-vignette { opacity:0 !important; }
+@media (prefers-reduced-motion:reduce) { #cinematic-vignette,#transition-flash { display:none; } }
